@@ -61,6 +61,7 @@ class Turtlebot3Sensor
   // IMU
   void initIMU(void);
   sensor_msgs::Imu getIMU(void);
+  sensor_msgs::Imu getIMURaw(void);
   void updateIMU(void);
   void calibrationGyro(void);
 
@@ -98,6 +99,7 @@ class Turtlebot3Sensor
   void setLedPattern(double linear_vel, double angular_vel);
  private:
   sensor_msgs::Imu           imu_msg_;
+  sensor_msgs::Imu           imu_raw_msg_;
   sensor_msgs::BatteryState  battery_state_msg_;
   sensor_msgs::MagneticField mag_msg_;
 

@@ -109,6 +109,7 @@ void loop()
   if ((t-tTime[3]) >= (1000 / IMU_PUBLISH_FREQUENCY))
   {
     publishImuMsg();
+    publishRawImuMsg(); //Publish unprocessed IMU
     publishMagMsg();
     tTime[3] = t;
   }
@@ -237,6 +238,19 @@ void publishImuMsg(void)
   imu_msg.header.frame_id = imu_frame_id;
 
   imu_pub.publish(&imu_msg);
+}
+
+/*******************************************************************************
+* Publish msgs (Raw IMU data: angular velocity, linear acceleration, orientation)
+*******************************************************************************/
+void publishRawImuMsg(void)
+{
+  imu_raw_msg = sensors.getIMURaw();
+
+  imu_raw_msg.header.stamp    = rosNow();
+  imu_raw_msg.header.frame_id = imu_frame_id;
+
+  imu_raw_pub.publish(&imu_raw_msg);
 }
 
 /*******************************************************************************

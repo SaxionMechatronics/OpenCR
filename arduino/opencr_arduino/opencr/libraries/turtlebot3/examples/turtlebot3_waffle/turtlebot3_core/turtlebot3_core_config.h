@@ -81,6 +81,7 @@ void resetCallback(const std_msgs::Empty& reset_msg);
 // Function prototypes
 void publishCmdVelFromRC100Msg(void);
 void publishImuMsg(void);
+void publishRawImuMsg(void); //Publish unprocessed IMU
 void publishMagMsg(void);
 void publishSensorStateMsg(void);
 void publishVersionInfoMsg(void);
@@ -154,6 +155,10 @@ ros::Publisher version_info_pub("firmware_version", &version_info_msg);
 // IMU of Turtlebot3
 sensor_msgs::Imu imu_msg;
 ros::Publisher imu_pub("imu", &imu_msg);
+
+// Raw IMU of Turtlebot3
+sensor_msgs::Imu imu_raw_msg;
+ros::Publisher imu_raw_pub("imu_raw", &imu_raw_msg);
 
 // Command velocity of Turtlebot3 using RC100 remote controller
 geometry_msgs::Twist cmd_vel_rc100_msg;

@@ -139,6 +139,53 @@ sensor_msgs::Imu Turtlebot3Sensor::getIMU(void)
   return imu_msg_;
 }
 
+sensor_msgs::Imu Turtlebot3Sensor::getIMURaw(void)
+{
+	imu_raw_msg_.angular_velocity.x = imu_.SEN.gyroRAW[0] * GYRO_FACTOR;
+	imu_raw_msg_.angular_velocity.y = imu_.SEN.gyroRAW[1] * GYRO_FACTOR;
+	imu_raw_msg_.angular_velocity.z = imu_.SEN.gyroRAW[2] * GYRO_FACTOR;
+	imu_raw_msg_.angular_velocity_covariance[0] = 0.02;
+	imu_raw_msg_.angular_velocity_covariance[1] = 0;
+	imu_raw_msg_.angular_velocity_covariance[2] = 0;
+	imu_raw_msg_.angular_velocity_covariance[3] = 0;
+	imu_raw_msg_.angular_velocity_covariance[4] = 0.02;
+	imu_raw_msg_.angular_velocity_covariance[5] = 0;
+	imu_raw_msg_.angular_velocity_covariance[6] = 0;
+	imu_raw_msg_.angular_velocity_covariance[7] = 0;
+	imu_raw_msg_.angular_velocity_covariance[8] = 0.02;
+
+	imu_raw_msg_.linear_acceleration.x = imu_.SEN.accRAW[0] * ACCEL_FACTOR;
+	imu_raw_msg_.linear_acceleration.y = imu_.SEN.accRAW[1] * ACCEL_FACTOR;
+	imu_raw_msg_.linear_acceleration.z = imu_.SEN.accRAW[2] * ACCEL_FACTOR;
+
+	imu_raw_msg_.linear_acceleration_covariance[0] = 0.04;
+	imu_raw_msg_.linear_acceleration_covariance[1] = 0;
+	imu_raw_msg_.linear_acceleration_covariance[2] = 0;
+	imu_raw_msg_.linear_acceleration_covariance[3] = 0;
+	imu_raw_msg_.linear_acceleration_covariance[4] = 0.04;
+	imu_raw_msg_.linear_acceleration_covariance[5] = 0;
+	imu_raw_msg_.linear_acceleration_covariance[6] = 0;
+	imu_raw_msg_.linear_acceleration_covariance[7] = 0;
+	imu_raw_msg_.linear_acceleration_covariance[8] = 0.04;
+
+	imu_raw_msg_.orientation.w = imu_.quat[0];
+	imu_raw_msg_.orientation.x = imu_.quat[1];
+	imu_raw_msg_.orientation.y = imu_.quat[2];
+	imu_raw_msg_.orientation.z = imu_.quat[3];
+
+	imu_raw_msg_.orientation_covariance[0] = 0.0025;
+	imu_raw_msg_.orientation_covariance[1] = 0;
+	imu_raw_msg_.orientation_covariance[2] = 0;
+	imu_raw_msg_.orientation_covariance[3] = 0;
+	imu_raw_msg_.orientation_covariance[4] = 0.0025;
+	imu_raw_msg_.orientation_covariance[5] = 0;
+	imu_raw_msg_.orientation_covariance[6] = 0;
+	imu_raw_msg_.orientation_covariance[7] = 0;
+	imu_raw_msg_.orientation_covariance[8] = 0.0025;
+
+	return imu_raw_msg_;
+}
+
 float* Turtlebot3Sensor::getOrientation(void)
 {
   static float orientation[4];
