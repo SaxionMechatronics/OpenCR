@@ -130,7 +130,7 @@ void cMPU9250::init( void )
 	imu_spi_write(MPU9250_SPIx_ADDR, MPU9250_ACCEL_CONFIG2, data);
 	delay(1);
 	//MPU9250 Set Gyro DLPF
-	imu_spi_write(MPU9250_SPIx_ADDR, MPU9250_CONFIG, MPU9250_GYRO_DLPF_41HZ);
+	imu_spi_write(MPU9250_SPIx_ADDR, MPU9250_CONFIG, MPU9250_GYRO_DLPF_250HZ);
 	delay(1);
 
 
